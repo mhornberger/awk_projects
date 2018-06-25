@@ -1,0 +1,16 @@
+#! /bin/awk -f     # The shebang line doesn't cut it.  For program invocation you still
+                   # need to enter 'awk -f [program name] [data file name]'
+
+# This is an example from page 24 of The Awk Programming Langauge
+# by Ago, Weinberger, and Kernhigan
+
+BEGIN { FS = "\t"  # make the tab the field separator
+        printf("%10s %6s %5s    %s\n\n",
+           "COUNTRY", "AREA", "POP", "CONTINENT")
+      }
+      { printf("%10s %6d %5d    %s\n", $1, $2, $3, $4)
+        area = area + $2
+	pop = pop + $3
+      }
+END   { printf("\n%10s %6d %5d\n", "TOTAL", area, pop)}
+
